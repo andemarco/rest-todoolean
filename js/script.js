@@ -1,25 +1,44 @@
 $(document).ready(function(){
-  var source = document.getElementById("entry-template").innerHTML;
-  var template = Handlebars.compile(source);
-  $.ajax({
-    url: "http://157.230.17.132:3034/todos",
-    method: "GET",
-    success: function (data, stato) {
-      for (var i = 0; i < data.length; i++) {
-        var element = data[i].text
-        var context = {
-          'element': element,
-          };
-        console.log(context);
-        var html = template(context);
-        $('.list').append(html)
+  function stampList () {
+    var source = document.getElementById("entry-template").innerHTML;
+    var template = Handlebars.compile(source);
+    $.ajax({
+      url: "http://157.230.17.132:3034/todos",
+      method: "GET",
+      success: function (data, stato) {
+        for (var i = 0; i < data.length; i++) {
+          var element = data[i].text;
+          var id = data[i].id;
+          var context = {
+            'element': element,
+            'id': id
+            };
+          console.log(context);
+          var html = template(context);
+          $('.list').append(html)
+        }
+      },
+      error: function (richiesta, stato, errori) {
+      alert("E' avvenuto un errore. " + errore);
       }
-    },
-    error: function (richiesta, stato, errori) {
-    alert("E' avvenuto un errore. " + errore);
-    }
-  });
+    });
+  }
+
+  stampList();
+
   $(document).on("click", ".delete", function() {
-    alert ('cangelli')
+    var buttonDelete = $(this);
+    var id = buttonDelete.parent().attr("data-list")
+    $.ajax({
+      url: "http://157.230.17.132:3034/todos/" + id,
+      method: "DELETE",
+      success: function (data, stato) {
+        $('.list li').remove();
+        stampList();
+      },
+      error: function (richiesta, stato, errori) {
+      alert("E' avvenuto un errore. " + errore);
+      }
+    });
   });
 })

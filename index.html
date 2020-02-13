@@ -9,13 +9,15 @@
     <title></title>
   </head>
   <body>
+    <input type="text" name="" value="" placeholder="Inserisci item">
+    <button type="button" name="button">Inserisci</button>
     <ul class="list">
 
     </ul>
 
 
     <script id="entry-template" type="text/x-handlebars-template">
-      <li>{{element}}<span class="delete"> X</span></li>
+      <li data-list="{{{id}}}">{{element}}<span class="delete"> X</span></li>
     </script>
     <script src="js/script.js" charset="utf-8"></script>
   </body>
