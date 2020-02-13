@@ -53,9 +53,7 @@ $(document).ready(function(){
     addItem ();
   })
 
-  $(document).on("click", ".delete", function() {
-    var buttonDelete = $(this);
-    var id = buttonDelete.parent().attr("data-list")
+  function deleteItem (id) {
     $.ajax({
       url: "http://157.230.17.132:3013/todos/" + id,
       method: "DELETE",
@@ -67,5 +65,12 @@ $(document).ready(function(){
       alert("E' avvenuto un errore. " + errore);
       }
     });
+  }
+
+
+  $(document).on("click", ".delete", function() {
+    var buttonDelete = $(this);
+    var id = buttonDelete.parent().attr("data-list");
+    deleteItem (id);
   });
 })
