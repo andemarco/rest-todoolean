@@ -5,19 +5,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
     <!-- HANDLEBARS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js" charset="utf-8"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
     <meta charset="utf-8">
     <title></title>
   </head>
   <body>
-    <input type="text" name="" value="" placeholder="Inserisci item">
-    <button type="button" name="button">Inserisci</button>
+    <input class="insert" type="text" name="" value="" placeholder="Inserisci item">
+    <button class="add_item_button"type="button" name="button">Inserisci</button>
     <ul class="list">
 
     </ul>
 
 
     <script id="entry-template" type="text/x-handlebars-template">
-      <li data-list="{{{id}}}">{{element}}<span class="delete"> X</span></li>
+      <li data-list="{{{id}}}">{{element}}
+        <span class="delete">  X(Clicca per eliminare)  </span>
+        <span class="edit">  EDIT(Clicca per modificare)  </span>
+        <div class="display_none update">
+          <input class="mod" type="text" name="" value="" placeholder="Inserisci item">
+          <button class="up_item_button"type="button" name="button">Inserisci</button>
+        </div>
+      </li>
     </script>
     <script src="js/script.js" charset="utf-8"></script>
   </body>
